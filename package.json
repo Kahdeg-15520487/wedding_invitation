@@ -1,0 +1,20 @@
+{
+  "name": "wedding-001",
+  "version": "1.0.0",
+  "description": "Wedding website",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve",
+    "dev": "npx serve -l 3000"
+  },
+  "keywords": [
+    "wedding",
+    "static",
+    "website"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "serve": "^14.2.1"
+  }
+}
