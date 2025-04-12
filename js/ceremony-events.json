@@ -1,0 +1,34 @@
+[
+  {
+    "time": "Chủ Nhật 09:00",
+    "title": "Đám hỏi",
+    "description": "Tổ chức tại nhà gái tại địa chỉ: ()",
+    "image": "images/xin-dau.jpg",
+    "icon": "images/object_36-50x60.png",
+    "position": "left"
+  },
+  {
+    "time": "Sunday 09.30",
+    "title": "Rước dâu",
+    "description": "Tổ chức tại nhà gái tại địa chỉ: ()",
+    "image": "images/thap-huong.jpg",
+    "icon": "images/object_118-55x60.png",
+    "position": "right"
+  },
+  {
+    "time": "Sunday 10.00",
+    "title": "Lễ Gia tiên",
+    "description": " Tổ chức tại nhà trai tại địa chỉ: ()",
+    "image": "images/le-cuoi.jpg",
+    "icon": "images/object_43-37x60.png",
+    "position": "left"
+  },
+  {
+    "time": "Sunday 11.00",
+    "title": "Tiệc cưới",
+    "description": "Địa điểm: Nhà hàng Golden Palace, 04-06 Nguyễn Ái Quốc, Tân Mai, Biên Hòa, Đồng Nai",
+    "image": "images/tiec-cuoi.jpg",
+    "icon": "images/object_118-55x60.png",
+    "position": "right"
+  }
+]
