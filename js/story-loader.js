@@ -39,7 +39,7 @@ function createStoryElement(story) {
     
     // Create the HTML for the story using template literals
     wrapper.innerHTML = `
-        <div class="row wed_story_row">
+        <div class="row wed_story_row" style="font-family: 'Miama-Nueva', cursive;">
             <div class="col-sm-12 col-md-5 text-center wed_bd ${isRight ? 'col-md-push-7' : ''}">
                 <div class="wed_second_border wed_image_bck" data-border="#edc082"></div>
                 <div class="wed_portfolio_item wed_story_img">
