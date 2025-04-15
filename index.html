@@ -39,7 +39,7 @@
         /*  */
 
     </script>
-    <script>
+    <!-- <script>
         jQuery(function () {
             var a = null;
             setInterval(function () {
@@ -56,7 +56,42 @@
             }, 5E3)
         });
 
-    </script>
+    </script> -->
+    <style>
+        /* Mobile responsive fixes for story title */
+        @media only screen and (max-width: 768px) {
+            .wed_story_title_mobile {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            
+            .story_title_first, 
+            .story_title_last {
+                display: block;
+                width: 100%;
+                text-align: center;
+            }
+            
+            .wed_story_title_img {
+                margin: 10px 0;
+            }
+        }
+
+        /* Desktop layout - keep everything on one line */
+        @media only screen and (min-width: 769px) {
+            .wed_story_title_mobile {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            
+            .wed_story_title_img {
+                margin: 0 10px;
+            }
+        }
+    </style>
 </head>
 
 <body class="page page-id-1556 page-template page-template-template-one-page page-template-template-one-page-php"><a
@@ -132,7 +167,7 @@
                                 <div class="wed_simple_block">
                                     <div class="text_block">
                                         <a style="text-decoration: none;" onMouseOver="this.style.color='hotpink'"
-                                            onMouseOut="this.style.color='#FFF'" title="Facebook" href="#">
+                                            onMouseOut="this.style.color='#FFF'" title="Facebook" href="javascript:void(0);">
                                             <h2 style="line-height: 1.5;"><span
                                                     style="margin-left: -50px;">Phương</span> Thanh</h2>
                                         </a>
@@ -144,7 +179,7 @@
                                 <div class="wed_simple_block  ">
                                     <div class="text_block">
                                         <a style="text-decoration: none;" onMouseOver="this.style.color='#3b5998'"
-                                            onMouseOut="this.style.color='#FFF'" title="Facebook" href="#">
+                                            onMouseOut="this.style.color='#FFF'" title="Facebook" href="javascript:void(0);">
                                             <h2 style="line-height: 1.5;">Lê Minh</h2>
                                         </a>
                                         <h4 style="margin-left: 30px;">Chú rể</h4>
@@ -162,8 +197,11 @@
                                     <div class=" ">
                                         <div class="text-center">
                                             <div class="wed_topstory_titile wed_great_titles">
-                                                <h2 class="wed_without_after"> Chuyện tình<img class="wed_story_title_img"
-                                                        src="images/object_139-130x62.png" alt="">Hai đứa</h2>
+                                                <h2 class="wed_without_after wed_story_title_mobile"> 
+                                                    <span class="story_title_first">Chuyện tình</span>
+                                                    <img class="wed_story_title_img" src="images/object_139-130x62.png" alt="">
+                                                    <span class="story_title_last">Hai đứa</span>
+                                                </h2>
                                             </div>
                                         </div>
 
@@ -244,7 +282,7 @@
                 <div class="wed_white_outter_border">
                     <section class="wed_section_inner wed_image_bck    ">
                         <div class="container text-center">
-                            <h2 class="wed_section_title">Ảnh cưới</h2>
+                            <h2 class="wed_section_title">Ảnh cưới chúng mình</h2>
                             <div class="fw-row">
                                 <div class="fw-col-xs-12 wed_image_bck wed_col">
                                     <div class="">
@@ -279,8 +317,8 @@
             </footer>
         </section>
     </div>
-    <audio controls autoplay loop hidden>
-        <source src="sounds/sugar.mp3" type="audio/mpeg">
+    <audio id="bgMusic" controls loop hidden>
+        <source src="sounds/Em Ơi Sau Này - Đặng Trí.mp3" type="audio/mpeg">
     </audio>
     <script>
         /*  */
@@ -321,6 +359,64 @@
             "loadingAnimation": "images\/loadingAnimation.gif"
         };
         /*  */
+    </script>
+    <script>
+        // Wait for window load event
+        window.addEventListener('load', function() {
+            // Small additional delay to ensure everything is rendered
+            setTimeout(function() {
+                // Get the audio element
+                const bgMusic = document.getElementById('bgMusic');
+                
+                // Set initial volume to 0
+                bgMusic.volume = 0;
+                
+                // Try to play the music
+                const playPromise = bgMusic.play();
+                
+                // Handle autoplay restrictions in modern browsers
+                if (playPromise !== undefined) {
+                    playPromise.then(function() {
+                        // Successful autoplay - fade in the volume
+                        fadeInAudio(bgMusic, 0.01, 0.7); // start at 0, increase by 0.01 per step, max volume 0.7
+                    }).catch(function(error) {
+                        // console.log("Autoplay prevented by browser policy");
+                        
+                        // // Create a visible play button for better user experience
+                        // const playButton = document.createElement('button');
+                        // playButton.innerHTML = '♫ Play Music';
+                        // playButton.className = 'music-play-button';
+                        // playButton.style.cssText = 'position: fixed; bottom: 20px; right: 20px; padding: 10px; background: rgba(237, 192, 130, 0.8); border: none; border-radius: 5px; cursor: pointer; z-index: 1000; font-family: "Bree Serif", serif;';
+                        
+                        // playButton.onclick = function() {
+                        //     bgMusic.volume = 0;
+                        //     bgMusic.play().then(function() {
+                        //         fadeInAudio(bgMusic, 0.01, 0.7);
+                        //         playButton.style.display = 'none';
+                        //     });
+                        // };
+                        
+                        // document.body.appendChild(playButton);
+                    });
+                }
+            }, 3000); // 3-second delay after page load
+        });
+        
+        // Function to create fade-in effect
+        function fadeInAudio(audioElement, step, maxVolume) {
+            let fadeAudio = setInterval(function() {
+                // If volume is less than max, increase it
+                if (audioElement.volume < maxVolume) {
+                    audioElement.volume += step;
+                    
+                    // When we've reached max volume, clear the interval
+                    if (audioElement.volume >= maxVolume) {
+                        audioElement.volume = maxVolume;
+                        clearInterval(fadeAudio);
+                    }
+                }
+            }, 100); // Adjust by step amount every 100ms
+        }
     </script>
     <script defer src="js/autoptimize_4c7a21032ed0f0652f5854a665252e17.js"></script>
     <script src="js/story-loader.js"></script>
