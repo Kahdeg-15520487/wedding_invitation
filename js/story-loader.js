@@ -44,7 +44,7 @@ function createStoryElement(story) {
                 <div class="wed_second_border wed_image_bck" data-border="#edc082"></div>
                 <div class="wed_portfolio_item wed_story_img">
                     <div class="wed_portfolio_item_cont wed_story_cont wed_image_bck" data-border="#edc082">
-                        <img class="wed_img_height" src="${story.image}" alt="">
+                        <img class="wed_img_height" src="${story.image}" style="${story.imageStyle}" alt="">
                         <span class="wed_port_titles">
                             <span class="wed_port_title">${story.imageTitle}</span>
                             <span class="wed_port_subtitle">${story.imageSubtitle}</span>
@@ -71,9 +71,9 @@ function createStoryElement(story) {
             </div>
             <div class="col-sm-12 col-md-5 ${isRight ? 'col-md-pull-7' : ''}">
                 <div class="wed_story_txt">
-                    <div class="wed_month_year">${story.date}</div>
-                    <h3>${story.title}</h3>
-                    <h5>${story.subtitle}</h5>
+                    <div class="wed_month_year" style="font-family: wonderful-script;">${story.date}</div>
+                    <h3 style="font-family: gochi-hand;">${story.title}</h3>
+                    <h5 style="font-family: leo-xiv;">${story.subtitle}</h5>
                     <p>${story.content}</p>
                 </div>
             </div>

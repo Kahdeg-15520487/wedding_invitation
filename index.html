@@ -66,14 +66,15 @@
                 align-items: center;
                 text-align: center;
             }
-            
-            .story_title_first, 
+
+            .story_title_first,
             .story_title_last {
                 display: block;
                 width: 100%;
                 text-align: center;
+                line-height: 1.5;
             }
-            
+
             .wed_story_title_img {
                 margin: 10px 0;
             }
@@ -86,12 +87,106 @@
                 align-items: center;
                 justify-content: center;
             }
-            
+
             .wed_story_title_img {
                 margin: 0 10px;
             }
         }
+
+        @media only screen and (max-width: 767px) {
+            .fw-row:has(.wed_simple_block_great) {
+                display: none !important;
+            }
+        }
+
+        /*groom*/
+        @media only screen and (min-width: 768px) {
+            .groom-name {
+                margin-left: 30px !important;
+                /* Override inline style */
+            }
+        }
+
+        @media only screen and (min-width: 992px) {
+            .groom-name {
+                margin-left: -40px !important;
+                /* Override inline style */
+            }
+        }
+
+        @media only screen and (min-width: 768px) {
+            .groom-title {
+                margin-left: 30px !important;
+                /* Override inline style */
+            }
+        }
+
+        @media only screen and (min-width: 992px) {
+            .groom-title {
+                margin-left: 00px !important;
+                /* Override inline style */
+            }
+        }
+
+        /*bride*/
+        @media only screen and (min-width: 768px) {
+            .bride-name {
+                margin-left: 30px !important;
+                /* Override inline style */
+            }
+        }
+
+        @media only screen and (min-width: 992px) {
+            .bride-name {
+                margin-left: 110px !important;
+                /* Override inline style */
+            }
+        }
+
+        @media only screen and (min-width: 768px) {
+            .bride-title {
+                margin-left: 30px !important;
+                /* Override inline style */
+            }
+        }
+
+        @media only screen and (min-width: 992px) {
+            .bride-title {
+                margin-left: 30px !important;
+                /* Override inline style */
+            }
+        }
+
+        /* background */
+        /* Mobile background image (smaller screens) */
+        @media only screen and (max-width: 767px) {
+            section.wed_section_inner.wed_image_bck.wed_wht_txt.wed_fixed[style*="turnover.jpg"] {
+                /* background-size: 400% !important; */
+                background-position: -50px;
+                background-image: url(images/turnover2.jpg) !important;
+            }
+        }
+
+        /* Tablet background image (medium screens) */
+        @media only screen and (min-width: 768px) and (max-width: 991px) {
+            section.wed_section_inner.wed_image_bck.wed_wht_txt.wed_fixed[style*="turnover.jpg"] {
+                background-image: url(images/turnover2.jpg) !important;
+            }
+        }
+
+        /* Desktop background image (default in your HTML) */
+        @media only screen and (min-width: 992px) {
+            section.wed_section_inner.wed_image_bck.wed_wht_txt.wed_fixed[style*="turnover.jpg"] {
+                background-image: url(images/turnover.jpg) !important;
+            }
+        }
     </style>
+    <!-- Add SimpleLightbox CSS -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/simplelightbox/2.14.2/simple-lightbox.min.css" />
+    <!-- Add SimpleLightbox JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/simplelightbox/2.14.2/simple-lightbox.min.js"></script>
+    <link rel="stylesheet" href="css/wishes-style.css">
 </head>
 
 <body class="page page-id-1556 page-template page-template-template-one-page page-template-template-one-page-php"><a
@@ -126,7 +221,8 @@
                                 <ul id="primary-menu" class="menu">
                                     <li id="menu-item-1616"
                                         class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1616">
-                                        <a href="#map-section" style="font-family: 'Times New Roman', Times, serif, sans-serif;">Bản đồ</a>
+                                        <a href="#map-section"
+                                            style="font-family: 'Times New Roman', Times, serif, sans-serif;">Bản đồ</a>
                                     </li>
                                 </ul>
                             </div>
@@ -153,8 +249,9 @@
         </div>
         <section id="wed_content" class="wed_content">
             <div class="fw-page-builder-content">
-                <section class="wed_section_inner wed_image_bck wed_wht_txt wed_fixed  "
-                    style=background-image:url(images/turnover.jpg); data-stellar-background-ratio="0.2">
+                <section class="wed_section_inner wed_image_bck wed_wht_txt wed_fixed"
+                    style="background-image: url(images/turnover.jpg); background-size: 100% auto; background-position: center center;"
+                    data-stellar-background-ratio="0.2">
                     <div class="wed_over" data-color="#000000" data-opacity="0.3"></div>
                     <div class="container ">
                         <div class="fw-row">
@@ -163,26 +260,29 @@
                             </div>
                         </div>
                         <div class="fw-row">
-                            <div class="fw-col-xs-12 fw-col-sm-6 wed_push_none  wed_image_bck text-center  wed_col">
-                                <div class="wed_simple_block">
+                            <div class="fw-col-xs-12 fw-col-sm-5 wed_push_none  wed_image_bck text-center  wed_col">
+                                <div class="wed_simple_block groom-name">
                                     <div class="text_block">
-                                        <a style="text-decoration: none;" onMouseOver="this.style.color='hotpink'"
-                                            onMouseOut="this.style.color='#FFF'" title="Facebook" href="javascript:void(0);">
-                                            <h2 style="line-height: 1.5;"><span
-                                                    style="margin-left: -50px;">Phương</span> Thanh</h2>
+                                        <a style="text-decoration: none;color: white;"
+                                            onMouseOver="this.style.color='#FFD700'"
+                                            onMouseOut="this.style.color='#FFFFFF'" title="Facebook"
+                                            href="javascript:void(0);">
+                                            <h2 style="line-height: 2;"><span>Lê Minh</span></h2>
                                         </a>
-                                        <h4>Cô dâu</h4>
+                                        <h4 class="groom-title" style="font-family: Miama-Nueva;">Chú rể</h4>
                                     </div>
                                 </div>
                             </div>
-                            <div class="fw-col-xs-12 fw-col-sm-5 wed_push_none  wed_image_bck text-center  wed_col">
-                                <div class="wed_simple_block  ">
+                            <div class="fw-col-xs-12 fw-col-sm-6 wed_push_none  wed_image_bck text-center wed_col">
+                                <div class="wed_simple_block bride-name ">
                                     <div class="text_block">
-                                        <a style="text-decoration: none;" onMouseOver="this.style.color='#3b5998'"
-                                            onMouseOut="this.style.color='#FFF'" title="Facebook" href="javascript:void(0);">
-                                            <h2 style="line-height: 1.5;">Lê Minh</h2>
+                                        <a style="text-decoration: none;color: white;"
+                                            onMouseOver="this.style.color='hotpink'"
+                                            onMouseOut="this.style.color='#FFFFFF'" title="Facebook"
+                                            href="javascript:void(0);">
+                                            <h2 style="line-height: 2;"><span>Phương Thanh</span></h2>
                                         </a>
-                                        <h4 style="margin-left: 30px;">Chú rể</h4>
+                                        <h4 class="bride-title" style="font-family: Miama-Nueva;">Cô dâu</h4>
                                     </div>
                                 </div>
                             </div>
@@ -197,16 +297,18 @@
                                     <div class=" ">
                                         <div class="text-center">
                                             <div class="wed_topstory_titile wed_great_titles">
-                                                <h2 class="wed_without_after wed_story_title_mobile"> 
-                                                    <span class="story_title_first">Chuyện tình</span>
-                                                    <img class="wed_story_title_img" src="images/object_139-130x62.png" alt="">
-                                                    <span class="story_title_last">Hai đứa</span>
+                                                <h2 class="wed_without_after wed_story_title_mobile">
+                                                    <span class="story_title_first" style="line-height: 1.5;">Chuyện
+                                                        tình</span>
+                                                    <img class="wed_story_title_img" src="images/object_139-130x62.png"
+                                                        alt="">
+                                                    <span class="story_title_last" style="line-height: 1.5;">Hai
+                                                        đứa</span>
                                                 </h2>
                                             </div>
                                         </div>
 
                                         <div id="story-container">
-                                            <!-- Stories will be loaded here via JavaScript -->
                                             <div class="text-center">
                                                 <p>Loading our love story...</p>
                                             </div>
@@ -231,7 +333,7 @@
                         </div>
                     </div>
                 </section>
-                <section class="wed_section_inner wed_image_bck wed_wht_txt wed_fixed  "
+                <!-- <section class="wed_section_inner wed_image_bck wed_wht_txt wed_fixed  "
                     style=background-image:url(images/bg_6.jpg); data-stellar-background-ratio="0.2">
                     <div class="wed_over" data-color="#edc082" data-opacity="0.9"></div>
                     <div class="container text-center">
@@ -243,13 +345,12 @@
                         </div>
 
                         <div id="ceremony-container">
-                            <!-- Ceremony events will be loaded here via JavaScript -->
                             <div class="text-center">
                                 <p>Loading wedding ceremony details...</p>
                             </div>
                         </div>
                     </div>
-                </section>
+                </section> -->
                 <section id="map-section" class="wed_section_inner wed_image_bck" style="padding: 100px 0;">
                     <div class="container-fluid">
                         <div class="fw-row">
@@ -287,7 +388,6 @@
                                 <div class="fw-col-xs-12 wed_image_bck wed_col">
                                     <div class="">
                                         <div id="gallery-container" class="wed_portfolio_no_padding grid">
-                                            <!-- Gallery items will be loaded here via JavaScript -->
                                             <div class="text-center">
                                                 <p>Loading gallery...</p>
                                             </div>
@@ -303,13 +403,54 @@
                     <div class="wed_over" data-color="#edc082" data-opacity="0.9"></div>
                     <div class="container text-center">
                         <div class="wed_thin_titles">
-                            <h2 style="line-height: 1.7;">“ Sự hiện diện của mọi người là món quà quý giá nhất với vợ chồng chúng mình! ”</h2>
+                            <h2 style="line-height: 1.7;">“ Sự hiện diện của mọi người là món quà quý giá nhất với vợ
+                                chồng chúng mình! ”</h2>
+
                         </div>
                         <div class="fw-row">
                             <div class="fw-col-xs-12 enh_push_none  wed_image_bck   wed_col">
                                 <div class="  "></div>
                             </div>
                         </div>
+                    </div>
+
+                    <!-- Wishes Form Section -->
+                    <div class="wed_white_outter_border">
+                        <section class="wed_section_inner wed_image_bck">
+                            <div class="container text-center">
+                                <h2 class="wed_section_title">Gửi lời chúc</h2>
+                                <div class="fw-row">
+                                    <div class="fw-col-xs-12 fw-col-sm-10 fw-col-sm-offset-1 wed_image_bck wed_col">
+                                        <div class="wed_form_wrapper">
+                                            <form id="wishes-form" action="javascript:void(0);" method="post" class="wed-form">
+                                                <div class="fw-row">
+                                                    <div class="fw-col-xs-12 fw-col-sm-6">
+                                                        <input type="text" name="name" placeholder="Tên của bạn *"
+                                                            required>
+                                                    </div>
+                                                    <div class="fw-col-xs-12 fw-col-sm-6">
+                                                        <input type="email" name="email" placeholder="Email">
+                                                    </div>
+                                                </div>
+                                                <div class="fw-row">
+                                                    <div class="fw-col-xs-12">
+                                                        <textarea name="message"
+                                                            placeholder="Nhập lời chúc của bạn dành cho cô dâu và chú rể *"
+                                                            required></textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="fw-row">
+                                                    <div class="fw-col-xs-12">
+                                                        <input type="submit" value="Gửi lời chúc">
+                                                    </div>
+                                                </div>
+                                                <div id="form-messages" class="wed_form_message"></div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
                     </div>
                 </section>
             </div>
@@ -362,32 +503,32 @@
     </script>
     <script>
         // Wait for window load event
-        window.addEventListener('load', function() {
+        window.addEventListener('load', function () {
             // Small additional delay to ensure everything is rendered
-            setTimeout(function() {
+            setTimeout(function () {
                 // Get the audio element
                 const bgMusic = document.getElementById('bgMusic');
-                
+
                 // Set initial volume to 0
                 bgMusic.volume = 0;
-                
+
                 // Try to play the music
                 const playPromise = bgMusic.play();
-                
+
                 // Handle autoplay restrictions in modern browsers
                 if (playPromise !== undefined) {
-                    playPromise.then(function() {
+                    playPromise.then(function () {
                         // Successful autoplay - fade in the volume
                         fadeInAudio(bgMusic, 0.01, 0.7); // start at 0, increase by 0.01 per step, max volume 0.7
-                    }).catch(function(error) {
+                    }).catch(function (error) {
                         // console.log("Autoplay prevented by browser policy");
-                        
+
                         // // Create a visible play button for better user experience
                         // const playButton = document.createElement('button');
                         // playButton.innerHTML = '♫ Play Music';
                         // playButton.className = 'music-play-button';
                         // playButton.style.cssText = 'position: fixed; bottom: 20px; right: 20px; padding: 10px; background: rgba(237, 192, 130, 0.8); border: none; border-radius: 5px; cursor: pointer; z-index: 1000; font-family: "Bree Serif", serif;';
-                        
+
                         // playButton.onclick = function() {
                         //     bgMusic.volume = 0;
                         //     bgMusic.play().then(function() {
@@ -395,20 +536,20 @@
                         //         playButton.style.display = 'none';
                         //     });
                         // };
-                        
+
                         // document.body.appendChild(playButton);
                     });
                 }
             }, 3000); // 3-second delay after page load
         });
-        
+
         // Function to create fade-in effect
         function fadeInAudio(audioElement, step, maxVolume) {
-            let fadeAudio = setInterval(function() {
+            let fadeAudio = setInterval(function () {
                 // If volume is less than max, increase it
                 if (audioElement.volume < maxVolume) {
                     audioElement.volume += step;
-                    
+
                     // When we've reached max volume, clear the interval
                     if (audioElement.volume >= maxVolume) {
                         audioElement.volume = maxVolume;
@@ -420,8 +561,9 @@
     </script>
     <script defer src="js/autoptimize_4c7a21032ed0f0652f5854a665252e17.js"></script>
     <script src="js/story-loader.js"></script>
-    <script src="js/ceremony-loader.js"></script>
+    <!-- <script src="js/ceremony-loader.js"></script> -->
     <script src="js/gallery-loader.js"></script>
+    <script src="js/wishes-handler.js"></script>
 </body>
 
 </html>

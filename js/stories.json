@@ -3,11 +3,60 @@
         "date": "17 Mar 2024",
         "title": "Our first meeting",
         "subtitle": "The beginning of our love story",
-        "image": "images/first-meeting.jpg",
+        "image": "images/gallery3/0012.JPG",
         "imageTitle": "First meeting",
         "imageSubtitle": "ZEN tea, Bien Hoa",
-        "content": "Cuộc gặp gỡ đầu tiên của chúng tôi diễn ra tại một quán trà ở Biên Hòa, nơi mà chúng tôi đã có những khoảnh khắc đáng nhớ bên nhau. Đó là một buổi chiều nhẹ nhàng, nơi mà tình yêu bắt đầu nảy nở.",
+        "content": "Cuộc gặp gỡ đầu tiên của chúng mình diễn ra tại một quán trà ở Biên Hòa, nơi mà chúng tớ đã có những khoảnh khắc đáng nhớ đầu tiên. Đó là một buổi chiều nhẹ nhàng, nơi mà tình yêu bắt đầu nảy nở.",
         "icon": "images/object_19-61x60.png",
-        "position": "left"
+        "position": "left",
+        "imageStyle": "position: relative;top: 0%;left: -10%;"
+    },
+    {
+        "date": "12 May 2024",
+        "title": "Ngày Anh tỏ tình với Em",
+        "subtitle": "The day I confess my love",
+        "image": "images/gallery4/0020.JPG",
+        "imageTitle": "Love confess",
+        "imageSubtitle": "Bien Hoa",
+        "content": "Sau một thời gian tìm hiểu, hai chúng mình quá độ tình cảm từ tìm hiểu tới tìm hiểu sâu.",
+        "icon": "images/object_19-61x60.png",
+        "position": "right",
+        "imageStyle": "position: relative;top: -65%;"
+    },
+    {
+        "date": "08 Mar 2025",
+        "title": "Ngày Anh cầu hôn Em",
+        "subtitle": "The day I wish to engage with You",
+        "image": "images/gallery4/0010.JPG",
+        "imageTitle": "Engagement",
+        "imageSubtitle": "Bien Hoa",
+        "content": "Nhân ngày quốc tế phụ nữ, anh muốn em làm người phụ nữ của đời anh.",
+        "icon": "images/object_19-61x60.png",
+        "position": "left",
+        "imageStyle": "position: relative;top: 0%;"
+    },
+    {
+        "date": "17 Mar 2025",
+        "title": "Ngày mình đăng ký kết hôn",
+        "subtitle": "The initiation of our married journey",
+        "image": "images/gallery4/0035.JPG",
+        "imageTitle": "Officially engaged",
+        "imageSubtitle": "Bien Hoa",
+        "content": "Được sự cho phép giữa 2 bên gia đình, chúng mình đi đăng ký kết hôn ở phường.",
+        "icon": "images/object_19-61x60.png",
+        "position": "right",
+        "imageStyle": "position: relative;top: -45%;"
+    },
+    {
+        "date": "13 July 2025",
+        "title": "Ngày Anh rước Em về nhà",
+        "subtitle": "The beginning of our married journey",
+        "image": "images/gallery4/0033.JPG",
+        "imageTitle": "Officially married",
+        "imageSubtitle": "Bien Hoa",
+        "content": "Hai chúng mình cuối cùng đã đến với nhau.",
+        "icon": "images/object_19-61x60.png",
+        "position": "left",
+        "imageStyle": "position: relative;top: -55%;"
     }
 ]

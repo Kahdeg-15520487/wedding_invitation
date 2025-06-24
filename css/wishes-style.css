@@ -1,0 +1,117 @@
+/* Wishes form styling */
+.wed_form_wrapper {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+}
+
+.wed_form input[type="text"],
+.wed_form input[type="email"],
+.wed_form textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-family: 'Lato', sans-serif;
+    transition: border-color 0.3s;
+}
+
+.wed_form input[type="text"]:focus,
+.wed_form input[type="email"]:focus,
+.wed_form textarea:focus {
+    border-color: #edc082;
+    outline: none;
+}
+
+.wed_form input[type="submit"] {
+    background-color: #edc082;
+    color: #fff;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: 'Bree Serif', serif;
+    transition: background-color 0.3s;
+    font-size: 16px;
+}
+
+.wed_form input[type="submit"]:hover {
+    background-color: #d6a75e;
+}
+
+.wed_form textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.wed_form_message {
+    margin-top: 15px;
+}
+
+.wed_form_success {
+    color: #4CAF50;
+    font-weight: bold;
+}
+
+.wed_form_error {
+    color: #F44336;
+    font-weight: bold;
+}
+
+/* Wishes display styling */
+.wed_wishes_list {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.wed_wish_item {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+.wed_wish_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+.wed_wish_header h4 {
+    margin: 0;
+    color: #edc082;
+    font-family: 'Bree Serif', serif;
+}
+
+.wed_wish_date {
+    color: #999;
+    font-size: 14px;
+    font-style: italic;
+}
+
+.wed_wish_message p {
+    margin: 0;
+    color: #333;
+    line-height: 1.6;
+    font-family: 'Lato', sans-serif;
+}
+
+/* Mobile responsive adjustments */
+@media only screen and (max-width: 768px) {
+    .wed_wish_header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .wed_wish_date {
+        margin-top: 5px;
+    }
+}
