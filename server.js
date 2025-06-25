@@ -19,8 +19,8 @@ app.use(express.static(path.join(__dirname)));
 app.post('/api/items', async (req, res) => {
   const { name, email, message } = req.body;
 
-  if (!name || !email || !message) {
-    return res.status(400).json({ message: 'Name, email, and message are required' });
+  if (!name || !message) {
+    return res.status(400).json({ message: 'Name, and message are required' });
   }
 
   const newItem = {

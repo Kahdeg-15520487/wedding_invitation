@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', function () {
         galleryHTML += `
         <div class="col-sm-4 wed_portfolio_item grid-item">
             <a href="${imagePath}" class="gallery-item wed_portfolio_item_cont">
-                <img alt="" src="${imagePath}" />
+                <img loading="lazy" alt="" src="${imagePath}" style="min-width: 200px; min-height: 300px; width: 100%; height: auto; object-fit: cover;" />
                 <span class="wed_port_titles">
                     <span class="wed_port_title"></span>
                     <span class="wed_port_icons">

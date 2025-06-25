@@ -51,14 +51,22 @@
     margin-top: 15px;
 }
 
+.wed_form_info {
+    color: #c9709d;
+    font-size: 28px;
+    font-family: Miama-Nueva;
+}
+
 .wed_form_success {
     color: #4CAF50;
     font-weight: bold;
+    font-family: Miama-Nueva;
 }
 
 .wed_form_error {
     color: #F44336;
     font-weight: bold;
+    font-family: Miama-Nueva, Arial;
 }
 
 /* Wishes display styling */

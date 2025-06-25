@@ -194,7 +194,7 @@
     <div class="wed_firefly">
         <div class="jqueryFireFly" data-total="15" data-minPixel="20" data-maxPixel="55"></div>
     </div>
-    <div class="wed_page_loader">
+    <div class="wed_page_loader" id="wed_page_loader">
         <div class="wed_preloader_couples wed_preloader_content wed_image_bck" data-color="#f8d1b9">
             <div class="wed_heart_container_row_4"><img class="wed_fourth_heart_1" src="images/heart_1.png" alt=""> <img
                     class="wed_fourth_heart_2" src="images/heart_2.png" alt=""> <img class="wed_fourth_heart_3"
@@ -398,8 +398,8 @@
                         </div>
                     </section>
                 </div>
-                <section class="wed_section_inner wed_image_bck wed_wht_txt wed_fixed  "
-                    style=background-image:url(images/bg.jpg); data-stellar-background-ratio="0.2">
+                <section class="wed_section_inner wed_image_bck wed_fixed  " style=background-image:url(images/bg.jpg);
+                    data-stellar-background-ratio="0.2">
                     <div class="wed_over" data-color="#edc082" data-opacity="0.9"></div>
                     <div class="container text-center">
                         <div class="wed_thin_titles">
@@ -422,8 +422,10 @@
                                 <div class="fw-row">
                                     <div class="fw-col-xs-12 fw-col-sm-10 fw-col-sm-offset-1 wed_image_bck wed_col">
                                         <div class="wed_form_wrapper">
-                                            <form id="wishes-form" action="javascript:void(0);" method="post" class="wed-form">
-                                                <div class="fw-row">
+                                            <form id="wishes-form" action="javascript:void(0);" method="post"
+                                                class="wed-form">
+                                                <div class="wed_form_fields">
+                                                <div class=" fw-row">
                                                     <div class="fw-col-xs-12 fw-col-sm-6">
                                                         <input type="text" name="name" placeholder="Tên của bạn *"
                                                             required>
@@ -434,29 +436,30 @@
                                                 </div>
                                                 <div class="fw-row">
                                                     <div class="fw-col-xs-12">
-                                                        <textarea name="message"
-                                                            placeholder="Nhập lời chúc của bạn dành cho cô dâu và chú rể *"
+                                                        <textarea name="message" style="color: #333;"
+                                                            placeholder="Xin nhập lời chúc của bạn dành cho cô dâu và chú rể *"
                                                             required></textarea>
                                                     </div>
                                                 </div>
                                                 <div class="fw-row">
                                                     <div class="fw-col-xs-12">
-                                                        <input type="submit" value="Gửi lời chúc">
+                                                        <input type="submit" style="color: #333;" value="Gửi lời chúc">
                                                     </div>
                                                 </div>
-                                                <div id="form-messages" class="wed_form_message"></div>
-                                            </form>
                                         </div>
+                                        <div id="form-messages" class="wed_form_message"></div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
-                        </section>
                     </div>
                 </section>
             </div>
-            <footer class="wed_footer">
-            </footer>
         </section>
+    </div>
+    <footer class="wed_footer">
+    </footer>
+    </section>
     </div>
     <audio id="bgMusic" controls loop hidden>
         <source src="sounds/Em Ơi Sau Này - Đặng Trí.mp3" type="audio/mpeg">
@@ -564,6 +567,39 @@
     <!-- <script src="js/ceremony-loader.js"></script> -->
     <script src="js/gallery-loader.js"></script>
     <script src="js/wishes-handler.js"></script>
+
+
+    <script>
+        jQuery(document).ready(function ($) {
+            const webPageLoader = document.getElementById('wed_page_loader');
+
+            webPageLoader.addEventListener('click', function () {
+                $(".wed_page_loader div").fadeOut();
+                $(".wed_page_loader").delay(200).fadeOut("slow");
+            });
+
+            document.addEventListener('keydown', function (event) {
+                if (event.code === 'Space' || event.code === 'Enter') {
+                    $(".wed_page_loader div").fadeOut();
+                    $(".wed_page_loader").delay(200).fadeOut("slow");
+                }
+            });
+
+            document.addEventListener('click', function (event) {
+                if (event.target === webPageLoader) {
+                    $(".wed_page_loader div").fadeOut();
+                    $(".wed_page_loader").delay(200).fadeOut("slow");
+                }
+            });
+
+            // add a timer to hide the loader after 5 seconds
+            setTimeout(function () {
+                $(".wed_page_loader div").fadeOut();
+                $(".wed_page_loader").delay(200).fadeOut("slow");
+            }, 5000); // 5000 milliseconds = 5 seconds
+        });
+    </script>
+
 </body>
 
 </html>
