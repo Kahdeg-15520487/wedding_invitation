@@ -180,6 +180,218 @@
                 background-image: url(images/turnover.jpg) !important;
             }
         }
+
+        /* Envelope Loading Animation */
+        .envelope-loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #f8d1b9 0%, #edc082 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease-out;
+        }
+
+        .envelope-container {
+            position: relative;
+            width: 300px;
+            height: 200px;
+            cursor: pointer;
+        }
+
+        .envelope {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            background: #fff;
+            border-radius: 5px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transform-style: preserve-3d;
+            transition: transform 0.3s ease;
+        }
+
+        .envelope:hover {
+            transform: scale(1.05);
+        }
+
+        .envelope-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: #f9f9f9;
+            border-radius: 5px;
+            border: 2px solid #edc082;
+        }
+
+        .envelope-front {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: #fff;
+            border-radius: 5px;
+            border: 2px solid #edc082;
+            z-index: 2;
+        }
+
+        .envelope-flap {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            background: #fff;
+            border: 2px solid #edc082;
+            border-bottom: none;
+            border-radius: 5px 5px 0 0;
+            transform-origin: bottom;
+            transform: rotateX(0deg);
+            transition: transform 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 3;
+            overflow: hidden;
+        }
+
+        .envelope-flap::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-left: 150px solid transparent;
+            border-right: 150px solid transparent;
+            border-bottom: 100px solid #fff;
+            transform: translate(-50%, -50%);
+        }
+
+        .envelope-flap.open {
+            transform: rotateX(-180deg);
+        }
+
+        .envelope-content {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            right: 20px;
+            bottom: 20px;
+            background: #f9f9f9;
+            border-radius: 3px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease;
+            transition-delay: 0.5s;
+            z-index: 1;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .envelope-content.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .invitation-text {
+            font-family: 'Bree Serif', serif;
+            color: #8B4513;
+            margin-bottom: 15px;
+        }
+
+        .invitation-text h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #edc082;
+        }
+
+        .invitation-text p {
+            font-size: 14px;
+            line-height: 1.4;
+            margin-bottom: 5px;
+        }
+
+        .invitation-date {
+            font-family: 'Lato', sans-serif;
+            font-weight: bold;
+            color: #8B4513;
+            font-size: 16px;
+        }
+
+        .click-instruction {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #8B4513;
+            font-family: 'Lato', sans-serif;
+            font-size: 14px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 1; }
+        }
+
+        .hearts-animation {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 20px;
+            color: #ff69b4;
+            animation: floatUp 3s ease-in-out infinite;
+            opacity: 0;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Mobile responsive */
+        @media only screen and (max-width: 768px) {
+            .envelope-container {
+                width: 280px;
+                height: 180px;
+            }
+            
+            .invitation-text h3 {
+                font-size: 20px;
+            }
+            
+            .invitation-text p {
+                font-size: 12px;
+            }
+            
+            .invitation-date {
+                font-size: 14px;
+            }
+        }
     </style>
     <!-- Add SimpleLightbox CSS -->
     <link rel="stylesheet"
@@ -599,7 +811,114 @@
             }, 5000); // 5000 milliseconds = 5 seconds
         });
     </script>
+    <div class="envelope-loader" id="envelope_loader">
+        <div class="envelope-container" id="envelope_container">
+            <div class="envelope">
+                <div class="envelope-back"></div>
+                <div class="envelope-front"></div>
+                <div class="envelope-flap" id="envelope_flap">
+                </div>
+                <div class="envelope-content" id="envelope_content">
+                    <div class="invitation-text">
+                        <h3>Thanh & Minh</h3>
+                        <p>Trân trọng kính mời</p>
+                        <p>Quý khách tham dự</p>
+                        <p>Lễ cưới của chúng tôi</p>
+                    </div>
+                    <div class="invitation-date">13.07.2025</div>
+                </div>
+            </div>
+            <div class="hearts-animation" id="hearts_animation"></div>
+        </div>
+        <div class="click-instruction">Nhấp để mở thiệp mời</div>
+    </div>
+    <script>
+        jQuery(document).ready(function ($) {
+            const envelopeLoader = document.getElementById('envelope_loader');
+            const envelopeContainer = document.getElementById('envelope_container');
+            const envelopeFlap = document.getElementById('envelope_flap');
+            const envelopeContent = document.getElementById('envelope_content');
+            const heartsAnimation = document.getElementById('hearts_animation');
 
+            let isEnvelopeOpened = false;
+            let heartsInterval;
+
+            function createHeart() {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.innerHTML = '♥';
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.animationDelay = Math.random() * 2 + 's';
+                heart.style.animationDuration = (Math.random() * 2 + 3) + 's';
+                heartsAnimation.appendChild(heart);
+
+                // Remove heart after animation
+                setTimeout(() => {
+                    if (heart.parentNode) {
+                        heart.parentNode.removeChild(heart);
+                    }
+                }, 5000);
+            }
+
+            function startHeartsAnimation() {
+                heartsInterval = setInterval(createHeart, 300);
+            }
+
+            function stopHeartsAnimation() {
+                if (heartsInterval) {
+                    clearInterval(heartsInterval);
+                }
+                // Remove existing hearts
+                const hearts = heartsAnimation.querySelectorAll('.heart');
+                hearts.forEach(heart => heart.remove());
+            }
+
+            function openEnvelope() {
+                if (isEnvelopeOpened) return;
+                
+                isEnvelopeOpened = true;
+                
+                // Hide click instruction
+                document.querySelector('.click-instruction').style.opacity = '0';
+                
+                // Open the flap
+                envelopeFlap.classList.add('open');
+                
+                // Show content after flap animation
+                setTimeout(() => {
+                    envelopeContent.classList.add('show');
+                    startHeartsAnimation();
+                }, 800);
+                
+                // Hide loader after content is shown
+                setTimeout(() => {
+                    stopHeartsAnimation();
+                    envelopeLoader.style.opacity = '0';
+                    setTimeout(() => {
+                        envelopeLoader.style.display = 'none';
+                    }, 500);
+                }, 3000);
+            }
+
+            // Click to open envelope
+            envelopeContainer.addEventListener('click', openEnvelope);
+
+            // Keyboard interaction
+            document.addEventListener('keydown', function (event) {
+                if (event.code === 'Space' || event.code === 'Enter') {
+                    event.preventDefault();
+                    openEnvelope();
+                }
+            });
+
+            // // Auto-open after 8 seconds if user doesn't interact
+            // setTimeout(() => {
+            //     if (!isEnvelopeOpened) {
+            //         openEnvelope();
+            //     }
+            // }, 8000);
+        });
+    </script>
 </body>
 
 </html>
