@@ -882,6 +882,14 @@
                 hearts.forEach(heart => heart.remove());
             }
 
+            function hideEnvelope() {
+                stopHeartsAnimation();
+                envelopeLoader.style.opacity = '0';
+                setTimeout(() => {
+                    envelopeLoader.style.display = 'none';
+                }, 500);
+            }
+
             function openEnvelope() {
                 if (isEnvelopeOpened) return;
                 
@@ -897,35 +905,38 @@
                 setTimeout(() => {
                     envelopeContent.classList.add('show');
                     startHeartsAnimation();
+                    
+                    // Update click instruction
+                    const clickInstruction = document.querySelector('.click-instruction');
+                    clickInstruction.innerHTML = 'Nhấp để tiếp tục';
+                    clickInstruction.style.opacity = '1';
+                    
+                    // Add click event to hide envelope after it's opened
+                    envelopeContainer.removeEventListener('click', openEnvelope);
+                    envelopeContainer.addEventListener('click', hideEnvelope);
+                    
+                    // Also allow keyboard interaction to hide
+                    document.addEventListener('keydown', function hideOnKeydown(event) {
+                        if (event.code === 'Space' || event.code === 'Enter') {
+                            event.preventDefault();
+                            hideEnvelope();
+                            document.removeEventListener('keydown', hideOnKeydown);
+                        }
+                    });
                 }, 800);
-                
-                // Hide loader after content is shown
-                setTimeout(() => {
-                    stopHeartsAnimation();
-                    envelopeLoader.style.opacity = '0';
-                    setTimeout(() => {
-                        envelopeLoader.style.display = 'none';
-                    }, 500);
-                }, 3000);
             }
 
             // Click to open envelope
             envelopeContainer.addEventListener('click', openEnvelope);
 
-            // Keyboard interaction
-            document.addEventListener('keydown', function (event) {
-                if (event.code === 'Space' || event.code === 'Enter') {
+            // Keyboard interaction to open
+            document.addEventListener('keydown', function openOnKeydown(event) {
+                if (!isEnvelopeOpened && (event.code === 'Space' || event.code === 'Enter')) {
                     event.preventDefault();
                     openEnvelope();
+                    document.removeEventListener('keydown', openOnKeydown);
                 }
             });
-
-            // // Auto-open after 8 seconds if user doesn't interact
-            // setTimeout(() => {
-            //     if (!isEnvelopeOpened) {
-            //         openEnvelope();
-            //     }
-            // }, 8000);
         });
     </script>
 </body>
