@@ -222,18 +222,20 @@
             position: absolute;
             width: 100%;
             height: 100%;
-            background: #f9f9f9;
+            background: #ff6b6b;
+            /* Red background for visibility */
             border-radius: 5px;
-            border: 2px solid #edc082;
+            border: 2px solid #4ecdc4;
         }
 
         .envelope-front {
             position: absolute;
             width: 100%;
             height: 100%;
-            background: #fff;
+            background: #45b7d1;
+            /* Blue front for visibility */
             border-radius: 5px;
-            border: 2px solid #edc082;
+            border: 2px solid #96ceb4;
             z-index: 2;
         }
 
@@ -243,8 +245,9 @@
             left: 0;
             width: 100%;
             height: 50%;
-            background: #fff;
-            border: 2px solid #edc082;
+            background: #feca57;
+            /* Yellow flap for visibility */
+            border: 2px solid #ff9ff3;
             border-bottom: none;
             border-radius: 5px 5px 0 0;
             transform-origin: bottom;
@@ -263,7 +266,8 @@
             height: 0;
             border-left: 150px solid transparent;
             border-right: 150px solid transparent;
-            border-bottom: 100px solid #fff;
+            border-bottom: 100px solid #54a0ff;
+            /* Blue triangle inside flap */
             transform: translate(-50%, -50%);
         }
 
@@ -277,7 +281,8 @@
             left: 20px;
             right: 20px;
             bottom: 20px;
-            background: #f9f9f9;
+            background: #2ed573;
+            /* Green content area for visibility */
             border-radius: 3px;
             display: flex;
             flex-direction: column;
@@ -306,19 +311,23 @@
         .invitation-text h3 {
             font-size: 24px;
             margin-bottom: 10px;
-            color: #edc082;
+            color: #ffffff;
+            /* White text for visibility on green background */
         }
 
         .invitation-text p {
             font-size: 14px;
             line-height: 1.4;
             margin-bottom: 5px;
+            color: #ffffff;
+            /* White text for visibility */
         }
 
         .invitation-date {
             font-family: 'Lato', sans-serif;
             font-weight: bold;
-            color: #8B4513;
+            color: #ffffff;
+            /* White text for visibility */
             font-size: 16px;
         }
 
@@ -890,14 +899,14 @@
                     startHeartsAnimation();
                 }, 800);
                 
-                // // Hide loader after content is shown
-                // setTimeout(() => {
-                //     stopHeartsAnimation();
-                //     envelopeLoader.style.opacity = '0';
-                //     setTimeout(() => {
-                //         envelopeLoader.style.display = 'none';
-                //     }, 500);
-                // }, 3000);
+                // Hide loader after content is shown
+                setTimeout(() => {
+                    stopHeartsAnimation();
+                    envelopeLoader.style.opacity = '0';
+                    setTimeout(() => {
+                        envelopeLoader.style.display = 'none';
+                    }, 500);
+                }, 3000);
             }
 
             // Click to open envelope
