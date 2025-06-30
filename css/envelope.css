@@ -64,11 +64,11 @@
     background-repeat: no-repeat;
     background-attachment: scroll; /* Changed from fixed to scroll */
     transition: transform 0.8s ease;
-    transition-delay: 0.5s;
 }
 
 .envelope-back.slide-down {
     transform: translateY(100px) rotateY(180deg);
+    transition-delay: 2.63s;
 }
 
 .envelope-front {
@@ -116,18 +116,18 @@
         z-index: 6;
     }
     100% {
-        transform: rotateX(-180deg);
+        transform: rotateX(-180deg) translateY(-100px);
         z-index: 3;
     }
 }
 
 .envelope-content {
     position: absolute;
-    top: 80%;
+    top: 10%;
     /* Start lower in the envelope */
     left: 20px;
     right: 20px;
-    bottom: 20px;
+    bottom: 25%;
     background: #2ed573;
     /* Green content area for visibility */
     border-radius: 3px;
@@ -148,7 +148,7 @@
 .envelope-content.show {
     opacity: 1;
     transform: translateY(-30%) rotateY(180deg);
-    transition-delay: 1.5s;
+    transition-delay: 2.6s;
     /* Move well above the envelope and stay flipped */
     top: -50px;
     /* Position above the envelope top */
