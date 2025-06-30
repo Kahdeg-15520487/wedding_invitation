@@ -31,14 +31,14 @@
 }
 
 .envelope-container {
-    position: absolute;
+    position: relative;
     width: 800px;
     height: 578px;
     cursor: pointer;
 }
 
 .envelope {
-    position: absolute;
+    position: relative;
     width: 100%;
     height: 100%;
     background: #fff;
@@ -60,6 +60,7 @@
     /* Red background for visibility */
     border-radius: 5px;
     border: 2px solid #4ecdc4;
+    z-index: 5;
 }
 
 .envelope-front {
@@ -70,7 +71,7 @@
     /* Blue front for visibility */
     border-radius: 5px;
     border: 2px solid #96ceb4;
-    z-index: 2;
+    z-index: 6;
     background-image: url('../images/envelope/front.png');
     background-size: cover;
     background-position: center center;
@@ -92,8 +93,8 @@
     transform-origin: top;
     transform: rotateX(0deg);
     transition: transform 1.5s cubic-bezier(0.4, 0, 0.2, 1);
-    z-index: 3;
     overflow: hidden;
+    z-index: 3;
 }
 
 .envelope-flap::before {
@@ -112,7 +113,7 @@
 
 .envelope-flap.open {
     transform: rotateX(180deg);
-    transition-delay: 0.5s;;
+    transition-delay: 0.5s;
 }
 
 .envelope-content {
@@ -130,20 +131,20 @@
     justify-content: center;
     align-items: center;
     opacity: 0;
-    transform: translateY(50%);
-    /* Start below visible area */
+    transform: translateY(50%) rotateY(180deg);
+    /* Start below visible area and flipped vertically */
     transition: all 0.8s ease;
     transition-delay: 0.5s;
-    z-index: 4;
     padding: 20px;
     text-align: center;
+    z-index: 4;
 }
 
 .envelope-content.show {
     opacity: 1;
-    transform: translateY(-30%);
+    transform: translateY(-30%) rotateY(180deg);
     transition-delay: 0.5s;
-    /* Move well above the envelope */
+    /* Move well above the envelope and stay flipped */
     top: -50px;
     /* Position above the envelope top */
 }
@@ -290,7 +291,6 @@
 
 /* envelope-front pane, placed above envelope-back */
 .envelope-front {
-    z-index: 2;
     /* for firefox 31 */
     transform: rotateY(0deg);
 }
