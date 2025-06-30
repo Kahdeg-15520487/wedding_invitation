@@ -426,41 +426,42 @@
                                             <form id="wishes-form" action="javascript:void(0);" method="post"
                                                 class="wed-form">
                                                 <div class="wed_form_fields">
-                                                <div class=" fw-row">
-                                                    <div class="fw-col-xs-12 fw-col-sm-6">
-                                                        <input type="text" name="name" placeholder="Tên của bạn *"
-                                                            required>
+                                                    <div class=" fw-row">
+                                                        <div class="fw-col-xs-12 fw-col-sm-6">
+                                                            <input type="text" name="name" placeholder="Tên của bạn *"
+                                                                required>
+                                                        </div>
+                                                        <div class="fw-col-xs-12 fw-col-sm-6">
+                                                            <input type="email" name="email" placeholder="Email">
+                                                        </div>
                                                     </div>
-                                                    <div class="fw-col-xs-12 fw-col-sm-6">
-                                                        <input type="email" name="email" placeholder="Email">
+                                                    <div class="fw-row">
+                                                        <div class="fw-col-xs-12">
+                                                            <textarea name="message" style="color: #333;"
+                                                                placeholder="Xin nhập lời chúc của bạn dành cho cô dâu và chú rể *"
+                                                                required></textarea>
+                                                        </div>
+                                                    </div>
+                                                    <div class="fw-row">
+                                                        <div class="fw-col-xs-12">
+                                                            <input type="submit" style="color: #333;"
+                                                                value="Gửi lời chúc">
+                                                        </div>
                                                     </div>
                                                 </div>
-                                                <div class="fw-row">
-                                                    <div class="fw-col-xs-12">
-                                                        <textarea name="message" style="color: #333;"
-                                                            placeholder="Xin nhập lời chúc của bạn dành cho cô dâu và chú rể *"
-                                                            required></textarea>
-                                                    </div>
-                                                </div>
-                                                <div class="fw-row">
-                                                    <div class="fw-col-xs-12">
-                                                        <input type="submit" style="color: #333;" value="Gửi lời chúc">
-                                                    </div>
-                                                </div>
+                                                <div id="form-messages" class="wed_form_message"></div>
+                                            </form>
                                         </div>
-                                        <div id="form-messages" class="wed_form_message"></div>
-                                        </form>
                                     </div>
                                 </div>
                             </div>
+                        </section>
                     </div>
                 </section>
             </div>
+            <footer class="wed_footer">
+            </footer>
         </section>
-    </div>
-    <footer class="wed_footer">
-    </footer>
-    </section>
     </div>
     <audio id="bgMusic" controls loop hidden>
         <source src="sounds/Em Ơi Sau Này - Đặng Trí.mp3" type="audio/mpeg">
@@ -603,19 +604,21 @@
     <div class="envelope-loader" id="envelope_loader">
         <div class="envelope-container" id="envelope_container">
             <div class="envelope">
-                <div class="envelope-back"></div>
-                <div class="envelope-front"></div>
-                <div class="envelope-flap" id="envelope_flap">
-                </div>
-                <div class="envelope-content" id="envelope_content">
-                    <div class="invitation-text">
-                        <h3>Thanh & Minh</h3>
-                        <p>Trân trọng kính mời</p>
-                        <p>Quý khách tham dự</p>
-                        <p>Lễ cưới của chúng tôi</p>
+                <div class="envelope-back">
+                    <div class="envelope-flap" id="envelope_flap">
                     </div>
-                    <div class="invitation-date">13.07.2025</div>
                 </div>
+                <div class="envelope-front">
+                </div>
+            </div>
+            <div class="envelope-content" id="envelope_content">
+                <div class="invitation-text">
+                    <h3>Thanh & Minh</h3>
+                    <p>Trân trọng kính mời</p>
+                    <p>Quý khách tham dự</p>
+                    <p>Lễ cưới của chúng tôi</p>
+                </div>
+                <div class="invitation-date">13.07.2025</div>
             </div>
             <div class="hearts-animation" id="hearts_animation"></div>
         </div>
@@ -672,29 +675,32 @@
 
             function openEnvelope() {
                 if (isEnvelopeOpened) return;
-                
+
                 isEnvelopeOpened = true;
-                
+
                 // Hide click instruction
                 document.querySelector('.click-instruction').style.opacity = '0';
-                
+
+                // Start the flip animation
+                document.querySelector('.envelope-loader').classList.add('flip');
+
                 // Open the flap
                 envelopeFlap.classList.add('open');
-                
+
                 // Show content after flap animation
                 setTimeout(() => {
                     envelopeContent.classList.add('show');
                     startHeartsAnimation();
-                    
+
                     // Update click instruction
                     const clickInstruction = document.querySelector('.click-instruction');
                     clickInstruction.innerHTML = 'Nhấp để tiếp tục';
                     clickInstruction.style.opacity = '1';
-                    
+
                     // Add click event to hide envelope after it's opened
                     envelopeContainer.removeEventListener('click', openEnvelope);
                     envelopeContainer.addEventListener('click', hideEnvelope);
-                    
+
                     // Also allow keyboard interaction to hide
                     document.addEventListener('keydown', function hideOnKeydown(event) {
                         if (event.code === 'Space' || event.code === 'Enter') {

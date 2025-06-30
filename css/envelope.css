@@ -233,3 +233,57 @@
         font-size: 14px;
     }
 }
+
+/* entire container, keeps perspective */
+.envelope-container {
+    perspective: 1000px;
+}
+
+/* flip the pane when hovered */
+.envelope-container:hover .envelope,
+.envelope-container.hover .envelope {
+    transform: rotateY(180deg);
+}
+
+.envelope-container,
+.envelope-front,
+.envelope-back {
+    /* width: 320px;
+	height: 480px; */
+}
+
+/* flip speed goes here */
+.envelope {
+    transition: 1.0s;
+    transform-style: preserve-3d;
+
+    position: relative;
+}
+
+/* hide envelope-back of pane during swap */
+.envelope-front,
+.envelope-back {
+    backface-visibility: hidden;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+/* envelope-front pane, placed above envelope-back */
+.envelope-front {
+    z-index: 2;
+    /* for firefox 31 */
+    transform: rotateY(0deg);
+}
+
+/* envelope-back, initially hidden pane */
+.envelope-back {
+    transform: rotateY(180deg);
+}
+
+.envelope-container:hover .envelope,
+.envelope-container.hover .envelope,
+.envelope-container.flip .envelope {
+    transform: rotateY(180deg);
+}
