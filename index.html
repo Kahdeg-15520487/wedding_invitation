@@ -598,7 +598,7 @@
             setTimeout(function () {
                 $(".wed_page_loader div").fadeOut();
                 $(".wed_page_loader").delay(200).fadeOut("slow");
-            }, 5000); // 5000 milliseconds = 5 seconds
+            }, 2000); // 5000 milliseconds = 5 seconds
         });
     </script>
     <div class="envelope-loader" id="envelope_loader">
@@ -682,7 +682,7 @@
                 document.querySelector('.click-instruction').style.opacity = '0';
 
                 // Start the flip animation
-                document.querySelector('.envelope-loader').classList.add('flip');
+                document.querySelector('.envelope-container').classList.add('flip');
 
                 // Open the flap
                 envelopeFlap.classList.add('open');

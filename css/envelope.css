@@ -11,6 +11,11 @@
     align-items: center;
     z-index: 9999;
     transition: opacity 0.5s ease-out;
+    background-image: url('../images/your-background-image.jpg');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 .envelope-container {
@@ -90,6 +95,7 @@
 
 .envelope-flap.open {
     transform: rotateX(180deg);
+    transition-delay: 0.5s;;
 }
 
 .envelope-content {
@@ -119,6 +125,7 @@
 .envelope-content.show {
     opacity: 1;
     transform: translateY(-30%);
+    transition-delay: 0.5s;
     /* Move well above the envelope */
     top: -50px;
     /* Position above the envelope top */
@@ -239,12 +246,6 @@
     perspective: 1000px;
 }
 
-/* flip the pane when hovered */
-.envelope-container:hover .envelope,
-.envelope-container.hover .envelope {
-    transform: rotateY(180deg);
-}
-
 .envelope-container,
 .envelope-front,
 .envelope-back {
@@ -282,8 +283,6 @@
     transform: rotateY(180deg);
 }
 
-.envelope-container:hover .envelope,
-.envelope-container.hover .envelope,
 .envelope-container.flip .envelope {
     transform: rotateY(180deg);
 }
