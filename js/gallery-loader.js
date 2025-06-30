@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', function () {
         galleryHTML += `
         <div class="col-sm-4 wed_portfolio_item grid-item">
             <a href="${imagePath}" class="gallery-item wed_portfolio_item_cont">
-                <img loading="lazy" alt="" src="${(imagePath.endsWith('JPG') ? imagePath + ".resized.JPG" : imagePath)}" style="min-height: 400px; width: 100%; height: auto; object-fit: contain;" />
+                <img loading="lazy" alt="" src="${(imagePath.endsWith('JPG') ? imagePath + ".resized.JPG" : imagePath)}" style="min-height: 100%; width: 100%; height: auto; object-fit: contain;" />
                 <span class="wed_port_titles">
                     <span class="wed_port_title"></span>
                     <span class="wed_port_icons">
