@@ -26,7 +26,14 @@ document.addEventListener('DOMContentLoaded', function () {
         },
         {
             id: 1,
-            folder: 'images/gallery/006',
+            folder: 'images/animated/gametro',
+            start: 0,
+            count: 0,
+            extension: 'webp'
+        },
+        {
+            id: 2,
+            folder: 'images/animated/hanoimoi',
             start: 0,
             count: 0,
             extension: 'webp'
@@ -65,19 +72,25 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    moveTileConfig.forEach(move => {
-        const sourceCategory = galleryConfig.find(cat => cat.id === move.sourceId);
-        const targetCategory = galleryConfig.find(cat => cat.id === move.targetId);
+    // moveTileConfig.forEach(move => {
+    //     const sourceCategory = galleryConfig.find(cat => cat.id === move.sourceId);
+    //     const targetCategory = galleryConfig.find(cat => cat.id === move.targetId);
 
-        if (sourceCategory && targetCategory) {
-            const sourceStartIndex = imagePaths.findIndex(path => path.includes(sourceCategory.folder + (sourceCategory.count == 0 ? "" : sourceCategory.start.toString().padStart(sourceCategory.count.toString().length))));
-            const sourceEndIndex = sourceStartIndex + (sourceCategory.count == 0 ? 1 : sourceCategory.count);
-            const startIndex = imagePaths.findIndex(path => path.includes(targetCategory.folder + move.after.toString().padStart(targetCategory.count.toString().length)));
-            const endIndex = startIndex + (sourceCategory.count == 0 ? 1 : sourceCategory.count);
-            const movedImages = imagePaths.splice(sourceStartIndex, sourceEndIndex - sourceStartIndex);
-            imagePaths.splice(startIndex, 0, ...movedImages);
-        }
-    });
+    //     if (sourceCategory && targetCategory) {
+    //         const sourceStartIndex = imagePaths.findIndex(path => path.includes(sourceCategory.folder + (sourceCategory.count == 0 ? "" : sourceCategory.start.toString().padStart(sourceCategory.count.toString().length))));
+    //         const sourceEndIndex = sourceStartIndex + (sourceCategory.count == 0 ? 1 : sourceCategory.count);
+    //         const startIndex = imagePaths.findIndex(path => path.includes(targetCategory.folder + move.after.toString().padStart(targetCategory.count.toString().length)));
+    //         const endIndex = startIndex + (sourceCategory.count == 0 ? 1 : sourceCategory.count);
+    //         const movedImages = imagePaths.splice(sourceStartIndex, sourceEndIndex - sourceStartIndex);
+    //         imagePaths.splice(startIndex, 0, ...movedImages);
+    //     }
+    // });
+
+    // shuffle the imagePaths array
+    for (let i = imagePaths.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [imagePaths[i], imagePaths[j]] = [imagePaths[j], imagePaths[i]];
+    }
 
     let galleryHTML = '';
     imagePaths.forEach(imagePath => {

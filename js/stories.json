@@ -33,7 +33,7 @@
         "content": "Nhân ngày quốc tế phụ nữ, anh muốn em làm người phụ nữ của đời anh.",
         "icon": "images/object_19-61x60.png",
         "position": "left",
-        "imageStyle": "position: relative;top: 0%;"
+        "imageStyle": "position: relative;top: 0%;object-position: center top;"
     },
     {
         "date": "17 Mar 2025",
