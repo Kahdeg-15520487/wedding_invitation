@@ -44,13 +44,6 @@ function createStoryElement(story) {
                 <div class="wed_second_border wed_image_bck" data-border="#edc082"></div>
                 <div class="wed_portfolio_item wed_story_img">
                         <img class="wed_img_heigh" src="${story.image}" style="${story.imageStyle}; max-width: 500px; max-height: 500px; border-radius: 25px; width: 100%; height: 100%; object-fit: cover;" alt="">
-                        <span class="wed_port_titles">
-                            <span class="wed_port_title">${story.imageTitle}</span>
-                            <span class="wed_port_subtitle">${story.imageSubtitle}</span>
-                            <span class="wed_port_icons">
-                                <a href="${story.image}" class="lightbox"><i class="ti ti-search"></i></a>
-                            </span>
-                        </span>
                 </div>
             </div>
             <div class="col-md-2 hidden-sm hidden-xs text-center">
@@ -69,9 +62,8 @@ function createStoryElement(story) {
             </div>
             <div class="col-sm-12 col-md-5 ${isRight ? 'col-md-pull-7' : ''}">
                 <div class="wed_story_txt" style="margin-top: 20px;">
-                    <div class="wed_month_year" style="font-family: wonderful-script;">${story.date}</div>
-                    <h3 style="font-family: gochi-hand;">${story.title}</h3>
-                    <h5 style="font-family: leo-xiv;">${story.subtitle}</h5>
+                    <div class="wed_month_year" style="font-family: Miama-Nueva;text-align: center; display: block;">${story.date}</div>
+                    <h5 style="font-family: Candlescript; font-size: 30px ;text-align: center; display: block;">${story.subtitle}</h5>
                     <p>${story.content}</p>
                 </div>
             </div>

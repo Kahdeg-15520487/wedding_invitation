@@ -180,6 +180,83 @@
                 background-image: url(images/turnover.jpg) !important;
             }
         }
+
+        /* Gochi Hand */
+        @font-face {
+            font-family: 'Gochi Hand';
+            src: url('./fonts/gochi-hand/gochi-hand-webfont.woff2') format('woff2'),
+            url('./fonts/gochi-hand/gochi-hand-webfont.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        /* Hensa */
+        @font-face {
+            font-family: 'Hensa';
+            src: url('./fonts/hensa/hensa-webfont.woff2') format('woff2'),
+            url('./fonts/hensa/hensa-webfont.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        /* Leo XIV */
+        @font-face {
+            font-family: 'Leo XIV';
+            src: url('./fonts/leo-xiv/leo-xiv-webfont.woff2') format('woff2'),
+            url('./fonts/leo-xiv/leo-xiv-webfont.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Miama-Nueva';
+            src: url(../fonts/Miama-Nueva/Miama-Nueva-webfont.eot);
+            src: url(../fonts/Miama-Nueva/Miama-Nueva-webfont.eot?#iefix) format('embedded-opentype'), url(../fonts/Miama-Nueva/Miama-Nueva-webfont.woff2) format('woff2'), url(../fonts/Miama-Nueva/Miama-Nueva-webfont.woff) format('woff'), url(../fonts/Miama-Nueva/Miama-Nueva-webfont.ttf) format('truetype'), url(../fonts/Miama-Nueva/Miama-Nueva-webfont.svg#Miama-Nuevaregular) format('svg');
+            font-weight: normal;
+            font-style: normal
+        }
+
+        /* Wonderful Script */
+        @font-face {
+            font-family: 'Wonderful Script';
+            src: url('./fonts/wonderful-script/wonderful-script-webfont.woff2') format('woff2'),
+            url('./fonts/wonderful-script/wonderful-script-webfont.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        /* Candlescript */
+        @font-face {
+            font-family: 'Candlescript';
+            src: url('./fonts/candlescript/UVF Candlescript Pro.woff2') format('woff2'),
+                 url('./fonts/candlescript/UVF Candlescript Pro.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        /* Drainwood */
+        @font-face {
+            font-family: 'Drainwood';
+            src: url('./fonts/drainwood/SVN-Drainwood.woff2') format('woff2'),
+                 url('./fonts/drainwood/SVN-Drainwood.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        /* CSS Variables for easy usage */
+        :root {
+            --font-gochi: 'Gochi Hand', cursive;
+            --font-hensa: 'Hensa', serif;
+            --font-leo: 'Leo XIV', serif;
+            --font-miama: 'Miama-Nueva', cursive;
+            --font-wonderful: 'Wonderful Script', cursive;
+        }
     </style>
     <!-- Add SimpleLightbox CSS -->
     <link rel="stylesheet"
@@ -513,9 +590,40 @@
             setTimeout(function () {
                 // Get the audio element
                 const bgMusic = document.getElementById('bgMusic');
+                let audioStarted = false; // Track if audio has been started
+                let playButton = null; // Reference to play button
 
                 // Set initial volume to 0
                 bgMusic.volume = 0;
+
+                // Function to safely start audio
+                function startAudio() {
+                    if (audioStarted) return; // Prevent multiple starts
+                    
+                    // Stop any existing playback first
+                    bgMusic.pause();
+                    bgMusic.currentTime = 0;
+                    bgMusic.volume = 0;
+                    
+                    return bgMusic.play().then(function() {
+                        audioStarted = true;
+                        fadeInAudio(bgMusic, 0.01, 0.7);
+                        console.log("Audio started successfully");
+                        
+                        // Remove play button if it exists
+                        if (playButton && playButton.parentNode) {
+                            playButton.style.opacity = '0';
+                            setTimeout(() => {
+                                if (playButton.parentNode) {
+                                    playButton.remove();
+                                }
+                            }, 300);
+                        }
+                    }).catch(function(err) {
+                        console.log("Failed to play audio:", err);
+                        audioStarted = false; // Reset flag on error
+                    });
+                }
 
                 // Try to play the music
                 const playPromise = bgMusic.play();
@@ -524,28 +632,63 @@
                 if (playPromise !== undefined) {
                     playPromise.then(function () {
                         // Successful autoplay - fade in the volume
-                        fadeInAudio(bgMusic, 0.01, 0.7); // start at 0, increase by 0.01 per step, max volume 0.7
+                        audioStarted = true;
+                        fadeInAudio(bgMusic, 0.01, 0.7);
+                        console.log("Audio started successfully");
                     }).catch(function (error) {
-                        // console.log("Autoplay prevented by browser policy");
+                        console.log("Autoplay prevented by browser policy");
 
-                        // // Create a visible play button for better user experience
-                        // const playButton = document.createElement('button');
-                        // playButton.innerHTML = '♫ Play Music';
-                        // playButton.className = 'music-play-button';
-                        // playButton.style.cssText = 'position: fixed; bottom: 20px; right: 20px; padding: 10px; background: rgba(237, 192, 130, 0.8); border: none; border-radius: 5px; cursor: pointer; z-index: 1000; font-family: "Bree Serif", serif;';
+                        // Create a visible play button for better user experience
+                        playButton = document.createElement('button');
+                        playButton.innerHTML = '🎵 Phát nhạc';
+                        playButton.className = 'music-play-button';
+                        playButton.style.cssText = `
+                            position: fixed; 
+                            bottom: 20px; 
+                            right: 20px; 
+                            padding: 12px 20px; 
+                            background: rgba(237, 192, 130, 0.95); 
+                            border: 2px solid #fff; 
+                            border-radius: 25px; 
+                            cursor: pointer; 
+                            z-index: 10000; 
+                            font-family: "Bree Serif", serif;
+                            color: #333;
+                            font-size: 14px;
+                            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+                            transition: all 0.3s ease;
+                        `;
 
-                        // playButton.onclick = function() {
-                        //     bgMusic.volume = 0;
-                        //     bgMusic.play().then(function() {
-                        //         fadeInAudio(bgMusic, 0.01, 0.7);
-                        //         playButton.style.display = 'none';
-                        //     });
-                        // };
+                        // Add hover effects
+                        playButton.onmouseover = function() {
+                            this.style.background = 'rgba(237, 192, 130, 1)';
+                            this.style.transform = 'scale(1.05)';
+                        };
+                        
+                        playButton.onmouseout = function() {
+                            this.style.background = 'rgba(237, 192, 130, 0.95)';
+                            this.style.transform = 'scale(1)';
+                        };
 
-                        // document.body.appendChild(playButton);
+                        playButton.onclick = function() {
+                            startAudio();
+                        };
+
+                        document.body.appendChild(playButton);
+
+                        // Also try to play on first user interaction (with debouncing)
+                        let interactionHandled = false;
+                        document.addEventListener('click', function startOnInteraction() {
+                            if (interactionHandled || audioStarted) return;
+                            interactionHandled = true;
+                            
+                            startAudio().finally(() => {
+                                document.removeEventListener('click', startOnInteraction);
+                            });
+                        }, { once: true });
                     });
                 }
-            }, 3000); // 3-second delay after page load
+            }, 1500); // Reduced delay to 1.5 seconds
         });
 
         // Function to create fade-in effect
@@ -553,16 +696,93 @@
             let fadeAudio = setInterval(function () {
                 // If volume is less than max, increase it
                 if (audioElement.volume < maxVolume) {
-                    audioElement.volume += step;
+                    audioElement.volume = Math.min(audioElement.volume + step, maxVolume);
 
                     // When we've reached max volume, clear the interval
                     if (audioElement.volume >= maxVolume) {
-                        audioElement.volume = maxVolume;
                         clearInterval(fadeAudio);
                     }
                 }
             }, 100); // Adjust by step amount every 100ms
         }
+
+        // Add audio controls for better user experience
+        function createAudioControls() {
+            const audioControls = document.createElement('div');
+            audioControls.className = 'audio-controls';
+            audioControls.style.cssText = `
+                position: fixed;
+                bottom: 20px;
+                left: 20px;
+                z-index: 10000;
+                display: flex;
+                gap: 10px;
+            `;
+
+            const bgMusic = document.getElementById('bgMusic');
+
+            // Play/Pause button
+            const playPauseBtn = document.createElement('button');
+            playPauseBtn.innerHTML = bgMusic.paused ? '▶️' : '⏸️';
+            playPauseBtn.style.cssText = `
+                padding: 8px 12px;
+                background: rgba(0,0,0,0.7);
+                color: white;
+                border: none;
+                border-radius: 20px;
+                cursor: pointer;
+                font-size: 16px;
+            `;
+
+            playPauseBtn.onclick = function() {
+                if (bgMusic.paused) {
+                    bgMusic.play().then(() => {
+                        this.innerHTML = '⏸️';
+                    }).catch(err => {
+                        console.log("Play failed:", err);
+                    });
+                } else {
+                    bgMusic.pause();
+                    this.innerHTML = '▶️';
+                }
+            };
+
+            // Update button state when audio state changes
+            bgMusic.addEventListener('play', () => {
+                playPauseBtn.innerHTML = '⏸️';
+            });
+            
+            bgMusic.addEventListener('pause', () => {
+                playPauseBtn.innerHTML = '▶️';
+            });
+
+            // Volume control
+            const volumeSlider = document.createElement('input');
+            volumeSlider.type = 'range';
+            volumeSlider.min = '0';
+            volumeSlider.max = '1';
+            volumeSlider.step = '0.1';
+            volumeSlider.value = '0.7';
+            volumeSlider.style.cssText = `
+                width: 80px;
+                accent-color: #edc082;
+            `;
+
+            volumeSlider.oninput = function() {
+                bgMusic.volume = this.value;
+            };
+
+            audioControls.appendChild(playPauseBtn);
+            audioControls.appendChild(volumeSlider);
+            
+            // Add controls after a delay to let autoplay attempt first
+            setTimeout(() => {
+                document.body.appendChild(audioControls);
+            }, 3000);
+        }
+
+        // Initialize audio controls
+        window.addEventListener('load', createAudioControls);
     </script>
     <script defer src="js/autoptimize_4c7a21032ed0f0652f5854a665252e17.js"></script>
     <script src="js/story-loader.js"></script>

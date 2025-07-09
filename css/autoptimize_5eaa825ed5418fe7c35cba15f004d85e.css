@@ -20615,7 +20615,6 @@ h2.active:after {
 h3 {
     font: 400 46px/48px Bree Serif, Arial;
     margin-bottom: 20px;
-    text-transform: uppercase
 }
 
 .wed_content .text-center h3 {
@@ -20635,9 +20634,7 @@ h4 {
 }
 
 h5 {
-    text-transform: uppercase;
-    font-size: 16px;
-    margin-top: 33px
+    margin-top: 10px
 }
 
 h6 {
@@ -20645,13 +20642,7 @@ h6 {
     margin-top: 33px
 }
 
-@font-face {
-    font-family: 'Miama-Nueva';
-    src: url(../fonts/Miama-Nueva/Miama-Nueva-webfont.eot);
-    src: url(../fonts/Miama-Nueva/Miama-Nueva-webfont.eot?#iefix) format('embedded-opentype'), url(../fonts/Miama-Nueva/Miama-Nueva-webfont.woff2) format('woff2'), url(../fonts/Miama-Nueva/Miama-Nueva-webfont.woff) format('woff'), url(../fonts/Miama-Nueva/Miama-Nueva-webfont.ttf) format('truetype'), url(../fonts/Miama-Nueva/Miama-Nueva-webfont.svg#Miama-Nuevaregular) format('svg');
-    font-weight: normal;
-    font-style: normal
-}
+
 
 h2.wed_Miama-Nueva_slider {
     font: 300 100px Miama-Nueva, Arial;
@@ -23439,7 +23430,7 @@ h2.wed_without_after {
 }
 
 .wed_month_year {
-    font: 300 26px/32px Miama-Nueva, Arial
+    font: 300 20px/32px Miama-Nueva, Arial
 }
 
 .wed_story_small_img img {

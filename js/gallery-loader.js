@@ -19,9 +19,9 @@ document.addEventListener('DOMContentLoaded', function () {
         // },
         {
             id: 2,
-            folder: 'images/gallery4/00',
+            folder: 'images/gallery5/000',
             start: 1,
-            count: 35,
+            count: 5,
             extension: 'JPG'
         },
         {
@@ -87,10 +87,10 @@ document.addEventListener('DOMContentLoaded', function () {
     // });
 
     // shuffle the imagePaths array
-    for (let i = imagePaths.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [imagePaths[i], imagePaths[j]] = [imagePaths[j], imagePaths[i]];
-    }
+    // for (let i = imagePaths.length - 1; i > 0; i--) {
+    //     const j = Math.floor(Math.random() * (i + 1));
+    //     [imagePaths[i], imagePaths[j]] = [imagePaths[j], imagePaths[i]];
+    // }
 
     let galleryHTML = '';
     imagePaths.forEach(imagePath => {
