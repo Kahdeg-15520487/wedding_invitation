@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lời Chúc Wedding</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            font-weight: 300;
+        }
+        .header p {
+            margin: 10px 0 0 0;
+            opacity: 0.9;
+        }
+        .wishes-container {
+            padding: 30px;
+        }
+        .wish-item {
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            margin-bottom: 20px;
+            padding: 20px;
+            border-radius: 8px;
+            transition: transform 0.2s ease;
+        }
+        .wish-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .wish-name {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+        .wish-message {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 10px;
+            white-space: pre-wrap;
+        }
+        .wish-date {
+            color: #888;
+            font-size: 0.9em;
+        }
+        .loading {
+            text-align: center;
+            padding: 50px;
+            color: #666;
+        }
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        .empty-state {
+            text-align: center;
+            padding: 50px;
+            color: #666;
+        }
+        .back-link {
+            display: inline-block;
+            margin: 20px 0;
+            padding: 10px 20px;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: background 0.3s ease;
+        }
+        .back-link:hover {
+            background: #5a6fd8;
+        }
+        .wishes-count {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #666;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>💕 Lời Chúc Wedding 💕</h1>
+            <p>Những lời chúc tốt đẹp dành cho cô dâu chú rể</p>
+        </div>
+        
+        <div class="wishes-container">
+            <a href="/" class="back-link">← Quay lại trang chính</a>
+            
+            <div id="loading" class="loading">
+                <p>Đang tải lời chúc...</p>
+            </div>
+            
+            <div id="error" class="error" style="display: none;">
+                <p>Không thể tải lời chúc. Vui lòng thử lại sau.</p>
+            </div>
+            
+            <div id="wishes-count" class="wishes-count" style="display: none;"></div>
+            <div id="wishes-list"></div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            loadWishes();
+        });
+
+        async function loadWishes() {
+            const loading = document.getElementById('loading');
+            const error = document.getElementById('error');
+            const wishesList = document.getElementById('wishes-list');
+            const wishesCount = document.getElementById('wishes-count');
+            
+            try {
+                const response = await fetch('/api/items');
+                const data = await response.json();
+                
+                loading.style.display = 'none';
+                
+                if (!response.ok) {
+                    throw new Error('Failed to load wishes');
+                }
+                
+                displayWishes(data.wishes || []);
+                
+            } catch (err) {
+                loading.style.display = 'none';
+                error.style.display = 'block';
+                console.error('Error loading wishes:', err);
+            }
+        }
+
+        function displayWishes(wishes) {
+            const wishesList = document.getElementById('wishes-list');
+            const wishesCount = document.getElementById('wishes-count');
+            
+            if (wishes.length === 0) {
+                wishesList.innerHTML = `
+                    <div class="empty-state">
+                        <h3>Chưa có lời chúc nào</h3>
+                        <p>Hãy là người đầu tiên gửi lời chúc!</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            wishesCount.textContent = `Tổng cộng ${wishes.length} lời chúc`;
+            wishesCount.style.display = 'block';
+            
+            const wishesHtml = wishes.map(wish => `
+                <div class="wish-item">
+                    <div class="wish-name">${escapeHtml(wish.name)}</div>
+                    <div class="wish-message">${escapeHtml(wish.message)}</div>
+                    <div class="wish-date">${formatDate(wish.date)}</div>
+                </div>
+            `).join('');
+            
+            wishesList.innerHTML = wishesHtml;
+        }
+
+        function escapeHtml(unsafe) {
+            if (!unsafe) return '';
+            return unsafe
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleString('vi-VN', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+        }
+    </script>
+</body>
+</html>

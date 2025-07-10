@@ -58,12 +58,57 @@ app.post('/api/items', async (req, res) => {
   }
 });
 
+// Get all items from pastebin (for viewing wishes)
+app.get('/api/items', async (req, res) => {
+  try {
+    // Fetch all pastes from the pastebin service
+    const response = await axios.get('http://192.168.1.32:8720/pastes');
+    
+    if (!response.data || !Array.isArray(response.data)) {
+      return res.json({ wishes: [] });
+    }
+    
+    // Parse the wishes from the paste content
+    const wishes = response.data
+      .map(paste => {
+        try {
+          // Parse the JSON content from each paste
+          const wishData = JSON.parse(paste.Content);
+          return {
+            id: wishData.id,
+            name: wishData.name,
+            email: wishData.email,
+            message: wishData.message,
+            date: paste.CreatedAt,
+            pasteId: paste.ID
+          };
+        } catch (parseError) {
+          console.error('Error parsing paste content:', parseError);
+          return null;
+        }
+      })
+      .filter(wish => wish !== null) // Remove any failed parses
+      .sort((a, b) => new Date(b.date) - new Date(a.date)); // Sort by newest first
+    
+    res.json({ wishes });
+  } catch (error) {
+    console.error('Error retrieving wishes:', error.message);
+    res.status(500).json({ error: 'Failed to retrieve wishes' });
+  }
+});
+
 // Catch-all handler to serve index.html for any non-API routes that don't match static files
 app.get('*', (req, res) => {
   // Skip API routes
   if (req.path.startsWith('/api/')) {
     return next();
   }
+  
+  // Serve loichuc.html for /loichuc/ path
+  if (req.path === '/loichuc/' || req.path === '/loichuc') {
+    return res.sendFile(path.join(__dirname, 'loichuc.html'));
+  }
+  
   res.sendFile(path.join(__dirname, 'index.html'));
 });
 
